@@ -1,3 +1,4 @@
+package BaekJoon;
 import java.io.*;
 public class Solution2675 {
 	public static void main(String[] args) throws IOException {

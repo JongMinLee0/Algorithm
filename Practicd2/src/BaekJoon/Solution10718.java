@@ -1,3 +1,4 @@
+package BaekJoon;
 
 public class Solution10718 {
 	public static void main(String[] args) {
