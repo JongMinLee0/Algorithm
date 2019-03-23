@@ -1,53 +1,36 @@
 package BaekJoon;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Solution2448 {
-	public static List<String> sTar() {
-		List<String> st = new ArrayList<>();
-		List<String> st2 = new ArrayList<>();
-		st.add("  *  ");
-		st.add(" * * ");
-		st.add("*****");
-
-		return st;
-	}
-
+class Solution2448 {
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		int t1 = N / 3;
-		int t2 = (t1 - 1) * 3;
-		int t = 0;
-		boolean x = true;
-		List<String> str = sTar();
-		List<String> str2 = new ArrayList<>();
-		while (x) {
-			// N을 2로 나눈거 까지 반복한다.
-			if (t == 0) {
-				for (int k = 0; k < 3; k++) {
-					System.out.println(str.get(k));
-					str2.add(str.get(k));
-					str2.add("\n");
-				}
-			}
-			t++;
-			if (N == 3)
-				break;
-			int f = str2.size();
-			for (int j = 0; j < f; j++) { // 행바뀜 for문 
-				for (int i = 0; i < 2; i++) { //이거for문 범위 바꿔야함.
-					System.out.print(str2.get(j));
-					if(str2.get(j)=="\n")
-						i=1;
-					str2.add(str2.get(j));
-				}
+		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
+		int N = Integer.parseInt(input.readLine());
+		int index = 0;
+		String[] star = new String[N];
+		star[0] = "  *  ";
+		star[1] = " * * ";
+		star[2] = "*****";
+
+		for (int k = 1; 3 * (int) Math.pow(2, k) <= N; ++k) {
+			int N2 = 3 * (int) Math.pow(2, k);
+			int blank = N2 / 2;
+
+			for (int i = blank; i < N2; ++i) {
+				star[i] = star[i - blank] + " " + star[i - blank];
 			}
-			if (t == t1 - 1)
-				x = false;
+
+			String space = "";
+			while (space.length() < blank) {
+				space += " ";
 			}
+			for (int i = 0; i < blank; ++i) {
+				star[i] = space + star[i] + space;
+			}
+		}
+		for (int i = 0; i < star.length; i++)
+			System.out.println(star[i]);
 
 	}
 }
