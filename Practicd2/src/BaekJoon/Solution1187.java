@@ -12,32 +12,46 @@ public class Solution1187 {
 
 		for (int i = 0; i < testCase; i++) {
 			inList.add(br.readLine());
+			if(testCase==1) {
+				System.out.println(inList.get(i));
+				System.exit(0);
+			}
 			if (!modList.contains(inList.get(i))) {
 				modList.add(inList.get(i));
 			}
 		}
 		String[] strArray = modList.toArray(new String[0]);
 		Arrays.sort(strArray);
+		ArrayList<String> resultList = new ArrayList<String>(Arrays.asList(strArray));
+		String[] resultArray = new String[strArray.length];
 		int index = 0;
-		for (int i = 0; i < strArray.length; i++) {
+		int index2 = 0;
+		int count2 = 0;
+		while(true) {
 			int count = 0;
-			int compare = strArray[i].length();
-			String temp = strArray[i];
-			for (int k = i; k < strArray.length; k++) {
-				if (compare > strArray[k].length()) {
-					compare = strArray[k].length();
-					index = k;
+			int min = resultList.get(index).length();
+			for(int i = 0; i < resultList.size(); i++) {
+				if(min > resultList.get(i).length()) {
+					min = resultList.get(i).length();
+					index2 = i;
 					count++;
 				}
 			}
-			if (count != 0) {
-				strArray[i] = strArray[index];
-				strArray[index] = temp;
+			if(count != 0) {
+				resultArray[count2] = resultList.get(index2);
+				count2++;
+				resultList.remove(index2);
+			}else {
+				resultArray[count2] = resultList.get(0);
+				resultList.remove(0);
+				count2++;
 			}
+			if(count2==strArray.length)
+				break;
+			
 		}
-
 		for (int i = 0; i < strArray.length; i++)
-			System.out.println(strArray[i]);
+			System.out.println(resultArray[i]);
 
 	}
 }
