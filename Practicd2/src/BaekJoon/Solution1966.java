@@ -1,4 +1,4 @@
-package java0418_basic;
+package BaekJoon;
 
 import java.io.*;
 import java.util.*;
