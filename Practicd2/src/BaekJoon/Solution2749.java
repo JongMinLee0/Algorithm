@@ -6,7 +6,7 @@ public class Solution2749 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		long n = Integer.parseInt(br.readLine());
+		long n = Long.parseLong(br.readLine());
 		int mod = 1000000;
 		long p = mod/10*15;
 		long[] pibo = new long [(int) p];
